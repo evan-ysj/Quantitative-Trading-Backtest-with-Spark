@@ -27,8 +27,8 @@ def read_file(filename):
                     '_c16','_c17','_c18','_c19','_c20','_c21','_c22','_c23')
     df = df.toDF('ID','Name','Date','Pre_Close','Open','High','Low','Close')
     df = df.withColumn('Date', df.Date.cast('date')).sort(df.Date)
-    df.printSchema()
-    df.show()
+    #df.printSchema()
+    #df.show()
     return df
 
 
