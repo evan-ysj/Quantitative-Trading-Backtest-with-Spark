@@ -10,6 +10,8 @@ class SmaCross:
         self._fast = fast
         self._slow = slow
         self.count = 0
+        self.sma1 = []
+        self.sma2 = []
         
     def buy(self):
         self._broker.buy()

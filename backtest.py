@@ -5,6 +5,8 @@ from utils_spark import assert_msg, crossover, SMA, read_file
 
 class Backtest:
     def __init__(self, data, cash=10000, commission=0.0005, fast=30, slow=90):
+        self.sma1 = []
+        self.sma2 = []
         self._data = data
         self._cash = cash
         self._commission = commission
@@ -13,9 +15,12 @@ class Backtest:
         self._results = {}
         self._broker = Exchange(data, cash, commission)
         self._strategy = SmaCross(self._broker, data, fast, slow)
+        self.values = self._broker.values
         
     def run(self):
         self._strategy.init()
+        self.sma1 = self._strategy.sma1
+        self.sma2 = self._strategy.sma2
         
         start = self._slow + 1
         end = len(self._broker.values)
@@ -36,9 +41,10 @@ class Backtest:
             
 def main():
     data = read_file('600602.SH.csv')
-    backtest = Backtest(data, 10000.0, 0, 10, 20)
+    backtest = Backtest(data, 10000.0, 0, 30, 90)
     profit = backtest.run()
     backtest.print_results()
+    print(backtest.sma1[200:230])
     
 
 if __name__ == '__main__':
