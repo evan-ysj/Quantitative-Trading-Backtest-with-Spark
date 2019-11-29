@@ -40,7 +40,7 @@ class Backtest:
             print(k, v)
             
 def main():
-    data = read_file('600602.SH.csv')
+    data = read_file('data/600602.SH.csv')
     backtest = Backtest(data, 10000.0, 0, 30, 90)
     profit = backtest.run()
     backtest.print_results()

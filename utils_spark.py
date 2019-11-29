@@ -19,14 +19,14 @@ def read_file(filename):
     file_path = path.join(path.dirname(__file__), filename)
     
     # Check whether the file exists or not
-    assert_msg(path.exists(file_path), 'File does not exist!')
+    assert_msg(path.exists(file_path), 'File does not exist!{0}'.format(file_path))
     
     # Read CSV file
     df_raw = sdf.read.csv(file_path,sep=',',inferSchema=True)
     df = df_raw.drop('_c8','_c9','_c10','_c11','_c12','_c13','_c14','_c15',
-                    '_c16','_c17','_c18','_c19','_c20','_c21','_c22','_c23')
+                    '_c16','_c17','_c18','_c19','_c20','_c21','_c22','_c23', '_c24')
     df = df.toDF('ID','Name','Date','Pre_Close','Open','High','Low','Close')
-    df = df.withColumn('Date', df.Date.cast('date')).sort(df.Date)
+    df = df.withColumn('Date', df.Date.cast('date')).withColumn('Close', df.Close.cast('double')).sort(df.Date).select('Date', 'Close').na.drop()
     #df.printSchema()
     #df.show()
     return df
