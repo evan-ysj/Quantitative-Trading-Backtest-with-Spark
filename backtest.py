@@ -28,6 +28,9 @@ class Backtest:
             self._broker.next(i)
             self._strategy.next(i)
         
+        self._results['Commission:'] = self._commission
+        self._results['SMA1 window size:'] = self._fast
+        self._results['SMA2 window size:'] = self._slow
         self._results['Initial value:'] = self._broker.initial_cash
         self._results['Final value:'] = self._broker.market_value
         self._results['Transaction times:'] = self._strategy.count
@@ -37,14 +40,13 @@ class Backtest:
     
     def print_results(self):
         for k, v in self._results.items():
-            print(k, v)
+            print('  ', k, v)
             
 def main():
     data = read_file('data/600602.SH.csv')
     backtest = Backtest(data, 10000.0, 0, 30, 90)
     profit = backtest.run()
     backtest.print_results()
-    print(backtest.sma1[200:230])
     
 
 if __name__ == '__main__':
