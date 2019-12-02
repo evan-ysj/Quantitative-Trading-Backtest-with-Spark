@@ -33,7 +33,7 @@ class Backtest:
         self._results['SMA2 window size:'] = self._slow
         self._results['Initial value:'] = self._broker.initial_cash
         self._results['Final value:'] = self._broker.market_value
-        self._results['Transaction times:'] = self._strategy.count
+        self._results['Transaction frequency:'] = self._strategy.count
         self._results['Profit:'] = self._broker.market_value - self._broker.initial_cash
         
         return self._results
