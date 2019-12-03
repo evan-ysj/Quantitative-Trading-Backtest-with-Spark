@@ -15,7 +15,15 @@ def assert_msg(condition, message):
         
 
 def read_file(filename):
-    # Get the absolute path of file
+    """
+    Read source data from csv file.
+    The data is cleaned and formated to the following schema:
+    |--Date:  data
+    |--Open:  double
+    |--High:  double
+    |--Low:   double
+    |--Close: double
+    """
     file_path = path.join(path.dirname(__file__), filename)
     
     # Check whether the file exists or not
