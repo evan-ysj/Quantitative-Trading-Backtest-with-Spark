@@ -1,7 +1,7 @@
 # Quantitative-Trading-Backtest-with-Spark
 
 ## Overview
-A small backtest system of quantitative trading that is extended from 
+A small backtest system of quantitative trading that is extended from some open source ideas about simple moving average strategy.
 
 ## Core system
 The system includes three classes and some independent functions.
